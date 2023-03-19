@@ -11,6 +11,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
+        darkMode: "class",
         theme: {
           extend: {
             spacing: {
@@ -28,12 +29,15 @@
       };
     </script>
     <style type="text/tailwindcss">
-      * {
+      /* * {
         border: 1px solid red;
+      } */
+      #toggle:checked ~ label div.toggle-circle {
+        @apply translate-x-3;
       }
     </style>
   </head>
-  <body>
+  <body class="dark:bg-slate-800 dark:text-slate-200">
     <h1 class="text-6xl font-bold text-center my-10">Belajar Utilities <span class="bg-gradient-to-r from-blue-500 to-teal-400 bg-clip-text text-transparent">TailwindCSS</span></h1>
 
     <section class="mb-10 bg-gradient-to-r from-indigo-200 via-red-100 to bg-yellow-100">
@@ -74,9 +78,61 @@
 
     <div class="mt-32 max-w-xl mx-auto h-96 bg-slate-300 bg-contain bg-no-repeat bg-center rounded-2xl border-4 border-slate-400 shadow-xl shadow-slate-500 overflow-hidden border-spacing-8 flex" style="background-image: url('./img/1.jpg')">
       <!-- <div class="w-full h-full bg-blue-300 mix-blend-multiply"></div> -->
-      <div class="w-[100px] h-[200px] bg-white/30 m-auto backdrop-blur-lg rounded-full"></div>
+      <div class="w-[200px] h-[200px] bg-white/30 m-auto backdrop-blur-lg rounded-full"></div>
+    </div>
+
+    <hr class="my-20" />
+
+    <div class="flex justify-center">
+      <span class="text-sm text-slate-500 mr-2">Light</span>
+      <input type="checkbox" id="toggle" class="hidden" />
+      <label for="toggle">
+        <div class="w-9 h-5 bg-slate-500 rounded-full flex items-center p-1 cursor-pointer">
+          <div class="w-4 h-4 bg-white rounded-full toggle-circle"></div>
+        </div>
+      </label>
+      <span class="text-sm text-slate-500 ml-2">Dark</span>
+    </div>
+
+    <button
+      class="my-10 bg-sky-500 px-5 py-2 rounded-full text-white font-semibold font-inter mx-auto block hover:bg-sky-600 active:bg-sky-700 foucs:ring focus:ring-sky-300 dark:bg-slate-300 dark:text-slate-800 dark:hover:text-slate-900 dark:hover:bg-slate-100"
+    >
+      Simpan
+    </button>
+
+    <div class="max-w-lg my-10 border border-slate-200 rounded-xl mx-auto p-5 shadow-md font-inter hover:bg-sky-500 group font-serif dark:hover:bg-slate-300">
+      <h5 class="font-bold text-slate-700 text-lg mb-3 group-hover:text-white dark:group-hover:text-slate-800">My Card</h5>
+      <p
+        class="text-slate-600 group-hover:text-white selection:bg-lime-300 selection:text-slate-900 first-line:uppercase first-line:tracking-widest first-letter:text-7xl first-letter:float-left first-letter:mr-3 dark:group-hover:text-slate-800"
+      >
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, corrupti! Quos repudiandae, quod ab quidem, deleniti officia delectus ipsum nisi qui excepturi id, veritatis asperiores obcaecati maiores cupiditate perspiciatis porro?
+      </p>
+    </div>
+
+    <div class="max-w-lg border border-slate-200 rounded-xl mx-auto shadow-md font-inter p-5">
+      <form action="">
+        <label for="email">
+          <span class="block font-semibold text-slate-700 after:content-['*'] after:text-pink-500 after:ml-0.5">Email</span>
+          <input
+            type="email"
+            id="email"
+            placeholder="masukkan email.."
+            class="px-3 py-2 border shadow rounded w-full block text-sm placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500 invalid:text-pink-700 invalid:focus:ring-pink-700 invalid:focus:border-pink-700 peer"
+          />
+          <p class="text-sm m-1 text-pink-700 invisible peer-invalid:visible">Email tidak valid</p>
+        </label>
+      </form>
     </div>
 
     <div class="mb-96"></div>
+
+    <script>
+      const checkbox = document.querySelector("#toggle");
+      const html = document.querySelector("html");
+
+      checkbox.addEventListener("click", function () {
+        checkbox.checked ? html.classList.add("dark") : html.classList.remove("dark");
+      });
+    </script>
   </body>
 </html>
